@@ -25,9 +25,8 @@ def oop_test1():
 
 
 if __name__ == '__main__':
-    products = [Product("Apple",20,3),
-                Product("Tomato",30,2),
-                Product("Grape",25,1),
-                ]
-
-    Order.find_max_weight_product(products)
+    order = Order()
+    order.add(Product("Apple",20,3))
+    order.add(Product("Tomato",30,2))
+    order.add(Product("Grape",25,1))
+    order.save_total_check()
