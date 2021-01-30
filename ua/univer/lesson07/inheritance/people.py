@@ -1,4 +1,12 @@
-class Human:
+import abc
+from abc import ABC
+
+
+class SwimAble(metaclass=abc.ABCMeta):
+    @abc.abstractmethod
+    def swim(self): pass
+
+class Human(metaclass=abc.ABCMeta):
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -17,7 +25,7 @@ class Human:
     def __str__(self):
         return f"{self.name}, {self.age}"
 
-class Student(Human):
+class Student(Human, SwimAble):
     def __init__(self, name, age, id_group):
         super().__init__(name, age)
         self.id_group = id_group
@@ -33,6 +41,8 @@ class Student(Human):
         else:
             self.__id_group =None
 
+    def swim(self):
+        print("swim Student")
 
     def study(self):
         print("studing")
@@ -70,7 +80,21 @@ class Vetirinar(Doctor):
 class Pediatr(Doctor):
     pass
 
-class Fighter(Human):
+
+class JumpAble(ABC):
+    @abc.abstractmethod
+    def jump(self): pass
+
+
+class Fighter(Human, SwimAble, JumpAble):
+
+
+    def jump(self):
+        pass
+
+    def swim(self):
+        pass
+
     def __init__(self, name, age, power, defence):
         Human.__init__(self, name, age)
         self.power = power
@@ -103,6 +127,8 @@ class Fighter(Human):
             print("We are winner")
         else:
             print("We are loser")
+
+
 
     def __str__(self):
         return f"{Human.__str__(self)}, {self.power}, {self.defence}"

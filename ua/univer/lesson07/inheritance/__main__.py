@@ -25,3 +25,10 @@ if __name__ == '__main__':
 
     for fight in fighters:
         print(fight)
+
+    swimers = []
+    for human in humans:
+        if isinstance(human,SwimAble):
+            swimers.append(human)
+
+    print(swimers)
