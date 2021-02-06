@@ -26,27 +26,32 @@ def open_click():
         for row in reader:
             languages_listbox.insert(END,f"{row['name']} - {row['age']}")
 
+
+
 def new_click():
-    new_win_human = Tk()
+    def save_click():
+        name = name_entry.get()
+        st = Student(name, 20, 1)
+        languages_listbox.insert(END,st.__str__())
+    new_win_human = Toplevel()
     new_win_human.title("new_win_human")
-    new_win_human.geometry("300x250")
+    new_win_human.geometry("300x400")
     name = StringVar()
     surname = StringVar()
 
-    name_label = Label(text="Введите имя:")
-    surname_label = Label(text="Введите фамилию:")
+    name_label = Label(new_win_human,text="Введите имя:")
+    surname_label = Label(new_win_human,text="Введите фамилию:")
 
-    name_label.grid(row=0, column=0, sticky="w")
-    surname_label.grid(row=1, column=0, sticky="w")
+    name_label.grid( row=0, column=0, sticky="w")
+    surname_label.grid( row=1, column=0, sticky="w")
 
-    name_entry = Entry(textvariable=name)
-    surname_entry = Entry(textvariable=surname)
-    name = name_entry.get()
-    st = Student(name, 20, 1)
-    languages_listbox.insert(END,st.__str__())
+    name_entry = Entry(new_win_human, textvariable=name)
+    surname_entry = Entry(new_win_human, textvariable=surname)
+
     name_entry.grid(row=0,column=1, padx=5, pady=5)
     surname_entry.grid(row=1,column=1, padx=5, pady=5)
-
+    n_button = Button(text="Click Me", command=save_click)
+    n_button.place(relx=.5, rely=.5, anchor="c")
     new_win_human.mainloop()
 
 def edit_click():
